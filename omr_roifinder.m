@@ -63,7 +63,9 @@ end
     roi_diameter  = regionprops(roi_cc,'MajorAxisLength');
     roi_diameter  = round(roi_diameter(1).MajorAxisLength);
     %Figure out number of rows based on changes in distance
-    if size(roi_centroids,2) ~= 1
+    if size(roi_centroids,1) ~= 1  
+    %this used to be size(roi_centroids,2) but for some reason the dimensions seem switched,
+    %might need to change back if using a different plate file
         for i = 3:length(roi_centroids)
             distA = abs(roi_centroids(i-1).Centroid(2) - roi_centroids(i-2).Centroid(2));
             distB = abs(roi_centroids(i).Centroid(2) - roi_centroids(i-1).Centroid(2));
